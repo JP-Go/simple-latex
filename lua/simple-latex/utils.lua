@@ -24,7 +24,7 @@ end
 -- Command and keymapping creation
 utils.createCmd = function(cmds)
   for _,v in ipairs(cmds) do
-	vim.api.nvim_command(':command!' .. table.concat(v,' '))
+	callcommand('command!' .. table.concat(v,' '))
 		end
 end
 
@@ -42,7 +42,7 @@ utils.findEnvDelimiters =  function()
 	local beginPat = "begin{.*}"
 	local beginPos = fn.search(beginPat,'bcn')
 	local endPat = string.format("\\Mend{%s}",utils.getEnvName(beginPos))
-	local endPos = fn.search(endPat,'')
+	local endPos = fn.search(endPat,'n')
 	return beginPos,endPos
 end
 
@@ -56,7 +56,7 @@ utils.deleteLine = function (linenum)
   fn.cursor(linenum,1)
   callcommand('.delete')
 end
-
+-- Unused for now
 utils.createInputWin = function ()
   local width = 32
   local height = 4

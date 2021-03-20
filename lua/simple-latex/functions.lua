@@ -1,23 +1,26 @@
-local utils = require('latex.utils')
+local utils = require('simple-latex.utils')
 local command = vim.cmd
 local fn = vim.fn
 local functions = {}
-functions.CompileLatex = function (engine)
+functions.compileLatex = function (engine)
   if utils.checkExecutable(engine) then
     local filepath = utils.getLatexFilePath()
     local outDir = utils.getLatexOutputDirectory()
     command('!' .. engine .. ' ' ..outDir .. ' ' .. filepath )
+    return
   end
+  print("Executable not found. Please check if "..engine .." is installed and set in $PATH" )
 end
-functions.OpenPdf = function (viewer)
+functions.openPdf = function (viewer)
   if utils.checkExecutable(viewer) then
     local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
     local opencmd = string.format("!%s %s &",viewer,pdfpath)
     command(opencmd)
     return
   end
-  print("Executable not found. Redefine the variable g:pdfViewer")
+  print("Executable not found. Redefine the variable g:simple_latex_viewer")
 end
+
 functions.operateInSurrEnv = function (flag)
   local view = fn.winsaveview()
   local beginPos,endPos = utils.findEnvDelimiters()

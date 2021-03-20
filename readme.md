@@ -30,14 +30,12 @@ has a ton of really good features.
 
 ```
 Plug 'JP-Go/simple-latex'
-
 ```
 
 * With packer
 
 ```
 use 'JP-Go/simple-latex'
-
 ```
 
 2. Add this line to your init file:
@@ -45,12 +43,10 @@ use 'JP-Go/simple-latex'
 * For init.vim:
 ```vim
 lua require('simple-latex')
-
 ```
 * For init.lua
 ```
 require('simple-latex')
-
 ```
 ## Features
 
@@ -85,9 +81,6 @@ used. If you wish to define your own mappings, set this to false. The default
 value is `true` (or 1, in Vimscript). More information on the mappings in the [Keymaps](#Commands-and-keymaps) 
 section.
 
-__g:simple_latex_prefix__: If you wish to use the default mappings but with other
-prefix key, set this variable to a valid vim character name such as "a","<lt>",
-"<F5>" or "<leader>". Defaults to the space key.
 
 ## Commands-and-keymaps
 
