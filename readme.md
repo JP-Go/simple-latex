@@ -112,6 +112,14 @@ I'm a college student right now, so time to develop is not much. But despite of
 that, I'll make the effort to analize issues and pull requests as often as 
 possible.
 
-### PS
+## PS
 
 (I'm not a native English speaker so... sorry if I butcher your language 😄)
+
+## TODO
+
+[] Port to non Unix-based systems (Windows)
+[] Fix bugs with the ChangeSurroundingEnviroment and ToggleStarEnviroment command
+[] New feature: simple bibtex integration
+[] Allow SyncTex
+[] Allow user to set compiling options
