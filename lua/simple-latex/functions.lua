@@ -14,13 +14,14 @@ functions.compileLatex = function (engine)
 end
 
 functions.openPdf = function (viewer)
-	local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
+local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
   if utils.checkExecutable(viewer) then
     local opencmd = string.format("!%s %s &",viewer,pdfpath)
     command(opencmd)
     return
   end
-  print("Executable not found. Redefine the variable g:simple_latex_viewer")
+command(string.format("!xdg-open %s &",pdfpath))
+  print("[WARN] Using fallback value 'xdg-open'")
 end
 
 -- TODO: Implement the operateInSurrEnv function as a table of functions instead
