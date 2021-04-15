@@ -1,7 +1,7 @@
 local createcmd = require('simple-latex.utils').createCmd
 
 vim.api.nvim_exec([[  fun! GetEngines (a,b,c)
-              return g:simple_latex_enines
+              return g:simple_latex_engines
             endfun ]],false)
 
 
