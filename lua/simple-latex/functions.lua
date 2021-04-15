@@ -2,6 +2,7 @@ local utils = require('simple-latex.utils')
 local command = vim.cmd
 local fn = vim.fn
 local functions = {}
+
 functions.compileLatex = function (engine)
   if utils.checkExecutable(engine) then
     local filepath = utils.getLatexFilePath()
@@ -11,6 +12,7 @@ functions.compileLatex = function (engine)
   end
   print("Executable not found. Please check if "..engine .." is installed and set in $PATH" )
 end
+
 functions.openPdf = function (viewer)
   if utils.checkExecutable(viewer) then
     local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
@@ -21,6 +23,7 @@ functions.openPdf = function (viewer)
   print("Executable not found. Redefine the variable g:simple_latex_viewer")
 end
 
+-- TODO: Implement the operateInSurrEnv function as a table of functions instead
 functions.operateInSurrEnv = function (flag)
   local view = fn.winsaveview()
   local beginPos,endPos = utils.findEnvDelimiters()
