@@ -20,8 +20,8 @@ local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
     command(opencmd)
     return
   end
-command(string.format("!xdg-open %s &",pdfpath))
   print("[WARN] Using fallback value 'xdg-open'")
+	command(string.format("!xdg-open %s &",pdfpath))
 end
 
 -- TODO: Implement the operateInSurrEnv function as a table of functions instead
