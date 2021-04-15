@@ -14,8 +14,8 @@ functions.compileLatex = function (engine)
 end
 
 functions.openPdf = function (viewer)
+	local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
   if utils.checkExecutable(viewer) then
-    local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
     local opencmd = string.format("!%s %s &",viewer,pdfpath)
     command(opencmd)
     return
