@@ -25,18 +25,26 @@ local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
 end
 
 -- TODO: Implement the operateInSurrEnv function as a table of functions instead
-functions.operateInSurrEnv = function (flag)
-  local view = fn.winsaveview()
-  local beginPos,endPos = utils.findEnvDelimiters()
-  local envName = utils.getEnvName(beginPos)
-  if(flag == "c") then
-    local newEnv = fn.input('New Environment name: ')
-    utils.subInLine(beginPos,envName,newEnv)
-    utils.subInLine(endPos,envName,newEnv)
-  elseif (flag == "d") then
-    utils.deleteLine(endPos)
-    utils.deleteLine(beginPos)
-  elseif (flag == "s") then
+
+
+local view = fn.winsaveview()
+local beginPos,endPos = utils.findEnvDelimiters()
+local envName = utils.getEnvName(beginPos)
+functions.envOperations = {}
+
+functions.envOperations.change = function ()
+	local newEnv = fn.input('New Environment name: ')
+	utils.subInLine(beginPos,envName,newEnv)
+	utils.subInLine(endPos,envName,newEnv)
+	fn.winrestview(view)
+end
+functions.envOperations.delete = function ()
+	utils.deleteLine(endPos)
+	utils.deleteLine(beginPos)
+  fn.winrestview(view)
+end
+
+functions.envOperations.star = function ()
     if (string.find(envName,"*")) then
       utils.subInLine(beginPos,envName,string.match(envName,"%a+"))
       utils.subInLine(endPos,envName,string.match(envName,"%a+"))
@@ -45,6 +53,6 @@ functions.operateInSurrEnv = function (flag)
       utils.subInLine(endPos,envName,envName.."*")
     end
   fn.winrestview(view)
-  end
 end
+
 return functions

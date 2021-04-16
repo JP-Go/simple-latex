@@ -114,7 +114,7 @@ possible.
 
 ## PS
 
-(I'm not a native English speaker so... sorry if I butcher your language 😄)
+(I'm not a native English speaker so... sorry if I butchered it 😄)
 
 ## TODO
 

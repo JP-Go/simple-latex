@@ -8,7 +8,7 @@ vim.api.nvim_exec([[  fun! GetEngines (a,b,c)
 createcmd({
   {'-nargs=1 -bar -complete=customlist,GetEngines','CompileLatex','lua require(\'simple-latex.functions\').compileLatex(<f-args>)' },
   {'','PreviewPdf',string.format('lua require(\'simple-latex.functions\').openPdf(\'%s\')',vim.g.simple_latex_viewer)},
-  {'','ChangeSurroudingEnviroment','lua require(\'simple-latex.functions\').operateInSurrEnv(\'c\')'},
-  {'','ToggleStarEnviroment','lua require(\'simple-latex.functions\').operateInSurrEnv(\'s\')'},
-  {'','DeleteEnviroment','lua require(\'simple-latex.functions\').operateInSurrEnv(\'d\')'}
+  {'','ChangeSurroudingEnviroment','lua require(\'simple-latex.functions\').envOperations.change()'},
+  {'','ToggleStarEnviroment','lua require(\'simple-latex.functions\').envOperations.star()'},
+  {'','DeleteEnviroment','lua require(\'simple-latex.functions\').envOperations.delete()'}
 })
