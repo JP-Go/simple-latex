@@ -35,7 +35,7 @@ end
 -- Enviroments operation
 utils.getEnvName = function (linenum)
   local lineContent  = fn.getline(linenum)
-  local capture = fn.matchlist(lineContent,'begin{\\(\\w*\\**\\)}')
+  local capture = fn.matchlist(lineContent,'begin{\\(.*\\)}')
   return capture[2]
 end
 utils.findEnvDelimiters =  function()
