@@ -35,11 +35,11 @@ end
 -- Enviroments operation
 utils.getEnvName = function (linenum)
   local lineContent  = fn.getline(linenum)
-  local capture = fn.matchlist(lineContent,'begin{\\(.*\\)}')
+  local capture = fn.matchlist(lineContent,'begin{\\(\\w*\\*\\?\\)}')
   return capture[2]
 end
 utils.findEnvDelimiters =  function()
-	local beginPat = "begin{.*}"
+	local beginPat = "begin{\\w*\\*\\?}"
 	local beginPos = fn.search(beginPat,'bcn')
 	local endPat = string.format("\\Mend{%s}",utils.getEnvName(beginPos))
 	local endPos = fn.search(endPat,'n')
