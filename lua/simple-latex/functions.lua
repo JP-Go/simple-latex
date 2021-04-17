@@ -29,10 +29,10 @@ end
 
 local view = fn.winsaveview()
 local beginPos,endPos = utils.findEnvDelimiters()
-local envName = utils.getEnvName(beginPos)
 functions.envOperations = {}
 
 functions.envOperations.change = function ()
+	local envName = utils.getEnvName(beginPos)
 	local newEnv = fn.input('New Environment name: ')
 	utils.subInLine(beginPos,envName,newEnv)
 	utils.subInLine(endPos,envName,newEnv)
@@ -45,6 +45,7 @@ functions.envOperations.delete = function ()
 end
 
 functions.envOperations.star = function ()
+		local envName = utils.getEnvName(beginPos)
     if (string.find(envName,"*")) then
       utils.subInLine(beginPos,envName,string.match(envName,"%a+"))
       utils.subInLine(endPos,envName,string.match(envName,"%a+"))
