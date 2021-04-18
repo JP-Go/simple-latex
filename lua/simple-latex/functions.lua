@@ -24,30 +24,22 @@ local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
 	command(string.format("!xdg-open %s &",pdfpath))
 end
 
--- TODO: Implement the operateInSurrEnv function as a table of functions instead
-
-
 functions.envOperations = {}
 
 functions.envOperations.change = function ()
-	local view = fn.winsaveview()
 	local beginPos,endPos = utils.findEnvDelimiters()
 	local envName = utils.getEnvName(beginPos)
 	local newEnv = fn.input('New Environment name: ')
 	utils.subInLine(beginPos,envName,newEnv)
 	utils.subInLine(endPos,envName,newEnv)
-	fn.winrestview(view)
 end
 functions.envOperations.delete = function ()
-	local view = fn.winsaveview()
 	local beginPos,endPos = utils.findEnvDelimiters()
 	utils.deleteLine(endPos)
 	utils.deleteLine(beginPos)
-  fn.winrestview(view)
 end
 
 functions.envOperations.star = function ()
-	local view = fn.winsaveview()
 	local beginPos,endPos = utils.findEnvDelimiters()
 	local envName = utils.getEnvName(beginPos)
 	if (string.find(envName,"*")) then
@@ -57,7 +49,6 @@ functions.envOperations.star = function ()
 		utils.subInLine(beginPos,envName,envName.."*")
 		utils.subInLine(endPos,envName,envName.."*")
 	end
-	fn.winrestview(view)
 end
 
 return functions
