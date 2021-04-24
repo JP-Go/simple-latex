@@ -39,7 +39,7 @@ utils.testEnvOperation = function (operation,expectedValue)
 	vim.cmd("lua " .. operation)
 	local bufText = getlines(testbuf)
 	api.nvim_buf_delete(testbuf,{force = true})
-	return compareTablesFields(bufText,expectedValue)
+	return compareTablesFields(bufText,expectedValue), bufText
 end
 
 return utils
