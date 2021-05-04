@@ -38,7 +38,7 @@ Plug 'JP-Go/simple-latex'
 use 'JP-Go/simple-latex'
 ```
 
-1. Add this line to your init file:
+1. Add this line to your init file (tip: use an autocommand for this):
 
 * For init.vim:
 
