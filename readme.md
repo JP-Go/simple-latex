@@ -96,7 +96,8 @@ and fairly verbose. The default keymaps are:
 nnoremap <space>cp CompileLatex pdflatex
 nnoremap <space>cx CompileLatex xelatex
 nnoremap <space>cl CompileLatex lualatex
-nnoremap <silent> <space>pp PreviewPdf
+nnoremap <silent> <space>vp ViewPdf
+nnoremap <silent> <space>vl ViewLatexlog
 ```
 
 The commands used are usable from the vim command line. Some features not yet
