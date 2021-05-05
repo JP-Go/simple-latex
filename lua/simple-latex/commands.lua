@@ -16,10 +16,11 @@ local viewPdfCommand ={'',
 local cseCommand = {'','ChangeSurroudingEnviroment','lua require(\'simple-latex.functions\').envOperations.change()'}
 local tseCommand = {'','ToggleStarEnviroment','lua require(\'simple-latex.functions\').envOperations.star()'}
 local deCommand = {'','DeleteEnviroment','lua require(\'simple-latex.functions\').envOperations.delete()'}
-
+local viewLogCommand = {'','ViewLatexLog','lua require(\'simple-latex.functions\').openLog()'}
 createcmd({	compileCommand,
 						viewPdfCommand,
 						cseCommand,
 						tseCommand,
-						deCommand
+						deCommand,
+						viewLogCommand
 })
