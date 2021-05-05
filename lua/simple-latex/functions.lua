@@ -51,4 +51,15 @@ functions.envOperations.star = function ()
 	end
 end
 
+functions.openLog = function ()
+	local logpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'log'
+	local log = io.open(logpath,"r")
+	if (log == nil) then
+		command("echo 'Log file not present. Did you compile the file'")
+	else
+		command(string.format("edit %s",logpath))
+		io.close(log)
+	end
+end
+
 return functions
