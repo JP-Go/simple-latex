@@ -7,7 +7,9 @@ functions.compileLatex = function (engine)
   if utils.checkExecutable(engine) then
     local filepath = utils.getLatexFilePath()
     local outDir = utils.getLatexOutputDirectory()
-    command('!' .. engine .. ' ' ..outDir .. ' ' .. filepath )
+		local compileOptions = utils.getCompileOptions()
+		local commandToCall = table.concat({'!',engine,outDir,compileOptions,filepath},' ')
+    command(commandToCall)
     return
   end
   print("Executable not found. Please check if "..engine .." is installed and set in $PATH" )

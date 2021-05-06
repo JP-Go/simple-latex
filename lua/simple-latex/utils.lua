@@ -1,6 +1,7 @@
 local utils = {}
 local fn = vim.fn
 local command = vim.cmd
+
 -- Compilation and file handling
 utils.checkExecutable = function(exe)
 	local isPresent = fn.executable(exe)
@@ -20,6 +21,15 @@ utils.getLatexFilePath = function ()
 	if isInCwd then return fn.expand("%:t") end
 	return fn.expand("%:p")
 end
+
+-- TODO: Should be able to set this on the CompileLatex command
+utils.getCompileOptions = function ()
+	if ( vim.g.simple_latex_compile_options ~= nil ) then
+		return table.concat(vim.g.simple_latex_compile_options,' ')
+	end
+	return ''
+end
+
 
 -- Command and keymapping creation
 utils.createCmd = function(cmds)
