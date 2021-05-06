@@ -24,12 +24,20 @@ end
 
 -- TODO: Should be able to set this on the CompileLatex command
 utils.getCompileOptions = function ()
+	local options = ''
 	if ( vim.g.simple_latex_compile_options ~= nil ) then
-		return table.concat(vim.g.simple_latex_compile_options,' ')
+		options = options .. table.concat(vim.g.simple_latex_compile_options,' ')
+	end
+	return table.concat({options,utils.getSynctexOption()},' ')
+end
+
+utils.getSynctexOption = function ()
+	if ( vim.g.simple_latex_synctex ~= nil ) then
+		local synctexLevel = string.format('%d' , vim.g.simple_latex_synctex )
+		return '--synctex='.. synctexLevel ..' '
 	end
 	return ''
 end
-
 
 -- Command and keymapping creation
 utils.createCmd = function(cmds)

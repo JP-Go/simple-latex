@@ -85,6 +85,18 @@ used. If you wish to define your own mappings, set this to false. The default
 value is `true` (or 1, in Vimscript). More information on the mappings in the
 [Keymaps](#Commands-and-keymaps) section.
 
+__g:simple_latex_compile_options__: Allow to set compile options to the LaTeX 
+compiler. Should be set as an vimscript array of strings 
+(eg.`['-halt-on-error','-draftmode']`) or a lua table, if prefered 
+(eg. `{'-halt-on-error','-draftmode'}`) as is set in your prefered LaTeX engine.
+(In Lualatex this options are preceded by two dashes instead of one).
+
+__g:simple_latex_synctex__: Enables SyncTex file creation and sets the SyncTex 
+option for the compiler. Should be a number following the SyncTex manual. If not 
+set or set to 0,the compiler will not generate the syncronization file .
+
+OBS.: For now, we don't support forward an backward searches with SyncTex in 
+all viewers out of the box, only in Evince (Linux).
 
 ## Commands-and-keymaps
 
@@ -124,12 +136,10 @@ possible.
 
 ## TODO
 
--[X] Fix bugs with the ChangeSurroundingEnviroment and ToggleStarEnviroment command
+- [] Allow SyncTex forward and backward searches for more editors
 
--[] Allow SyncTex
+- [] New feature: simple bibtex integration
 
--[] Allow user to set compiling options
+- [] Improve the view log functionality (maybe a popup?)
 
--[] New feature: simple bibtex integration
-
--[] Port to non Unix-based systems (Windows)
+- [] Port to non Unix-based systems (Windows)
