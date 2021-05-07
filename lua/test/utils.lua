@@ -39,7 +39,20 @@ utils.testEnvOperation = function (operation,expectedValue)
 	vim.cmd("lua " .. operation)
 	local bufText = getlines(testbuf)
 	api.nvim_buf_delete(testbuf,{force = true})
-	return compareTablesFields(bufText,expectedValue), bufText
+	return compareTablesFields(bufText,expectedValue),bufText
+end
+
+utils.logResultIfFailed = function (operation,expectedValue,valueGot)
+	local logIfFailed =
+		table.concat({"ERROR in ", operation, "\nExpected:\n",
+									table.concat(expectedValue,"\n"),"\nGot\n",
+									table.concat(valueGot,"\n") }, " ")
+end
+
+utils.assertOperation = function (operation,expectedValue)
+	local testPassed,resultOfOperation = utils.testEnvOperation(operation,expectedValue)
+	local logIfFailed = utils.logResultIfFailed(operation,expectedValue,resultOfOperation)
+	assert(testPassed,logIfFailed)
 end
 
 return utils

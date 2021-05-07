@@ -1,24 +1,29 @@
 local utils = require('utils')
-local envOperationsTests = {}
+local envOpsTests = {}
 
-envOperationsTests.testChangeEnv =  function (newEnv)
+envOpsTests.testChangeEnv =  function ()
 	local operation = "require('simple-latex.functions').envOperations.change()"
-	-- simulates user input
-	vim.api.nvim_feedkeys(newEnv..'\n','c',false)
-	local newBegin = string.format('\\begin{%s}',newEnv)
-	local newEnd = string.format('\\end{%s}',newEnv)
-	local expectedValue = {newBegin, ' ', newEnd}
+	-- simulates user input to the ChangeSurroudingEnviroment command
+	vim.api.nvim_feedkeys('new'..'\n','c',false)
+	local expectedValue =
+		{string.format('\\begin{%s}',"new"),' ',string.format('\\end{%s}',"new")}
 
-	local testPassed,resultOfOperation = utils.testEnvOperation(operation,expectedValue)
-
-	if (not testPassed) then
-		print('[ERROR] in testChangeEnv.Got: \n')
-		print(table.concat(resultOfOperation,'\n'))
-		print('Expected \n')
-		print(table.concat(expectedValue,'\n'))
-		return
-	end
-	print('[Passed] testChangeEnv')
+	utils.assertOperation(operation,expectedValue)
 end
 
-return envOperationsTests
+envOpsTests.testStarEnv = function ()
+	local operation = "require('simple-latex.functions').envOperations.star()"
+	local expectedValue =
+		{string.format('\\begin{%s}',"main*"), ' ', string.format('\\end{%s}',"main*")}
+
+	utils.assertOperation(operation,expectedValue)
+end
+
+envOpsTests.testDeleteEnv = function ()
+	local operation = "require('simple-latex.functions').envOperations.delete()"
+	local expectedValue = {' '}
+
+	utils.assertOperation(operation,expectedValue)
+end
+
+return envOpsTests
