@@ -47,6 +47,7 @@ utils.logResultIfFailed = function (operation,expectedValue,valueGot)
 		table.concat({"ERROR in ", operation, "\nExpected:\n",
 									table.concat(expectedValue,"\n"),"\nGot\n",
 									table.concat(valueGot,"\n") }, " ")
+	return logIfFailed
 end
 
 utils.assertOperation = function (operation,expectedValue)
