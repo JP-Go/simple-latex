@@ -31,7 +31,7 @@ functions.envOperations = {}
 functions.envOperations.change = function ()
 	local beginPos,endPos = utils.findEnvDelimiters()
 	local envName = utils.getEnvName(beginPos)
-	local newEnv = fn.input('New Environment name: ')
+	local newEnv = fn.input('New Environment name(<Esc to cancel>): ')
         if newEnv ~= "" then
                 utils.subInLine(beginPos,envName,newEnv)
                 utils.subInLine(endPos,envName,newEnv)

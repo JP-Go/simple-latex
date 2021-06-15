@@ -1,6 +1,6 @@
 # Simple-latex
 
-A set of usefull functions to write LaTeX documents for NeoVim, developed in lua.
+A set of usefull functions to write LaTeX documents for NeoVim, writen in lua.
 
 ## A brief apology
 
@@ -98,25 +98,33 @@ By default, these keymaps are prefixed by the "<space>" key, to avoid making
 the user lift his hand of the keyboard. They are set this way to be intuitive
 and fairly verbose. The default keymaps are:
 
+### Keymaps
 ```vim
-nnoremap <space>cp CompileLatex pdflatex
-nnoremap <space>cx CompileLatex xelatex
-nnoremap <space>cl CompileLatex lualatex
-nnoremap <silent> <space>vp ViewPdf
-nnoremap <silent> <space>vl ViewLatexlog
+nnoremap <space>cp <cmd>CompileLatex pdflatex<cr>
+nnoremap <space>cx <cmd>CompileLatex xelatex<cr>
+nnoremap <space>cl <cmd>CompileLatex lualatex<cr>
+nnoremap <silent> <space>vp <cmd>ViewPdf<cr>
+nnoremap <silent> <space>vl <cmd>ViewLatexlog<cr>
+nnoremap <space>cse <cmd> ChangeSurroudingEnviroment<cr>
+nnoremap <space>dse <cmd> DeleteEnviroment<cr>
+nnoremap <space>tse <cmd> ToggleStarEnviroment<cr>
 ```
 
-The commands used are usable from the vim command line. Some features not yet
-fully implemented are the changing, deleting and toggling of the enviroments
-surrounding the cursor. They can be used by calling the command in the vim
-command line.
+###Commands
 
-`ChangeSurroundingEnviroment` changes the name of the surrounding enviroment to
-one of your chosing. It will prompt you to chose it's name.
-`ToggleStarEnviroment` will toggle the variant of the enviroment (stared or not
-stared).this is usefull when using some of the amsmath enviroments.
-`DeleteSurroundingEnviromet` will delete the enviroment begin and end lines, it
-will not delete the content inside it.
+`CompileLatex compiler`: Compile the current LaTeX file with `compiler`
+
+`ViewPdf`: Opens a pdf file that coresponds to the current LaTeX file
+
+`ViewLatexlog`: Opens the current LaTeX file logs.
+
+`ChangeSurroudingEnviroment`: Change the name of the enviroment that is surrounding the
+current cursor position
+
+`DeleteEnviroment`: Delete the enviroment delimiters that surround the current cursor position 
+
+`ToggleStarEnviroment`: Turns the the enviroment that surrounds the cursor into a star (*) enviroment.
+Usefull for AMS packages
 
 ## Feedback and contributing
 
@@ -134,6 +142,6 @@ possible.
 
 - [] New feature: simple bibtex integration
 
-- [] Improve the view log functionality (maybe a popup?)
+- [] Change the way to view the log file (It should move to the error line. Maybe use a popup window)
 
 - [] Port to non Unix-based systems (Windows)
