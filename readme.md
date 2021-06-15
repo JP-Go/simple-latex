@@ -4,18 +4,12 @@ A set of usefull functions to write LaTeX documents for NeoVim, developed in lua
 
 ## A brief apology
 
-This plugin is **not** a "Development Enviroment" for LaTeX documents. It is
-just set of usefull functions to help LaTeX writers to compile, modify and view
-their documents with ease and in their prefered programs without leaving vim
-for it.  It will not highlight keywords, errors, or give sugestions. Such
-features are not present in this plugin.
-
 The main focus of this project is to provide vim users (or even "LaTeX IDEs
-users") a minimal set of tools to write LaTeX documents. These tools should be
-minimal in the sense that this plugin will not have a load of advanced features
-(hence its name). With this plugin, you have just the essentials tools to build
-your LaTeX projects without leaving vim and losing your focus on editing the
-document.
+users") a **minimal** (just the bare bones essentials) set of tools to write
+LaTeX documents. These tools should be minimal in the sense that this plugin
+will not have a load of advanced features (hence its name). With this plugin,
+you have just the essentials tools to build your LaTeX projects without leaving
+vim and losing your focus on editing the document.
 
 For a part LaTeX user, this toolset will not be enough and lack some feature
 desired . In that case, [the vimtex](https://https://github.com/lervag/vimtex),

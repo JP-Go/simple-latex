@@ -16,14 +16,14 @@ functions.compileLatex = function (engine)
 end
 
 functions.openPdf = function (viewer)
-local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
-  if utils.checkExecutable(viewer) then
-    local opencmd = string.format("!%s %s &",viewer,pdfpath)
-    command(opencmd)
-    return
-  end
-  print("[WARN] Using fallback value 'xdg-open'")
-	command(string.format("!xdg-open %s &",pdfpath))
+        local pdfpath = string.sub(utils.getLatexFilePath(),0,-4) .. 'pdf'
+        if utils.checkExecutable(viewer) then
+                local opencmd = string.format("!%s %s &",viewer,pdfpath)
+                command(opencmd)
+        return
+        end
+        print("[WARN] Using fallback value 'xdg-open'")
+        command(string.format("!xdg-open %s &",pdfpath))
 end
 
 functions.envOperations = {}
@@ -32,8 +32,12 @@ functions.envOperations.change = function ()
 	local beginPos,endPos = utils.findEnvDelimiters()
 	local envName = utils.getEnvName(beginPos)
 	local newEnv = fn.input('New Environment name: ')
-	utils.subInLine(beginPos,envName,newEnv)
-	utils.subInLine(endPos,envName,newEnv)
+        if newEnv ~= "" then
+                utils.subInLine(beginPos,envName,newEnv)
+                utils.subInLine(endPos,envName,newEnv)
+                return
+        end
+        command("echoerr 'New enviroment name not given.'")
 end
 functions.envOperations.delete = function ()
 	local beginPos,endPos = utils.findEnvDelimiters()
