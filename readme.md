@@ -94,7 +94,7 @@ all viewers out of the box, only in Evince (Linux).
 
 ## Commands-and-keymaps
 
-By default, these keymaps are prefixed by the "<space>" key, to avoid making
+By default, the keymaps are prefixed by the "<space>" key, to avoid making
 the user lift his hand of the keyboard. They are set this way to be intuitive
 and fairly verbose. The default keymaps are:
 
@@ -109,7 +109,8 @@ nnoremap <space>cse <cmd> ChangeSurroudingEnviroment<cr>
 nnoremap <space>dse <cmd> DeleteEnviroment<cr>
 nnoremap <space>tse <cmd> ToggleStarEnviroment<cr>
 ```
-
+These keymaps can be set manually, if the user prefers by setting the 
+        `simple_latex_default_mappings` to false, explicitly.
 ###Commands
 
 `CompileLatex compiler`: Compile the current LaTeX file with `compiler`
