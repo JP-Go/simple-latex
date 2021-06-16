@@ -37,7 +37,7 @@ functions.envOperations.change = function ()
                 utils.subInLine(endPos,envName,newEnv)
                 return
         end
-        command("echoerr 'New enviroment name not given.'")
+        command("echo 'Cancelled!'")
 end
 functions.envOperations.delete = function ()
 	local beginPos,endPos = utils.findEnvDelimiters()
