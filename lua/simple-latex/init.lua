@@ -10,6 +10,6 @@ M.setup = function(options)
     end
     require('simple-latex.commands')
 end
-M.options = opts
+M.options = opts.opts
 
 return M
