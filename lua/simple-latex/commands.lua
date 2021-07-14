@@ -1,7 +1,10 @@
 local createcmd = require('simple-latex.utils').createCmd
 
 vim.api.nvim_exec([[  fun! GetEngines (a,b,c)
-		return g:simple_latex_engines
+		if exists(g:simple_latex_engines)
+            return g:simple_latex_engines
+        endif
+        return ['pdflatex','xelatex','lualatex']
 		endfun ]],false)
 
 local compileCommand = {'-nargs=1 -bar -complete=customlist,GetEngines',
