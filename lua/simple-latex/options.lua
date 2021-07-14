@@ -1,5 +1,5 @@
 local vars = vim.g
-
+local M = {}
 local userVars = {
     engines = vars.simple_latex_engines, 
     default_mappings = vars.simple_latex_default_mappings,
@@ -8,7 +8,7 @@ local userVars = {
     compile_options = vars.simple_latex_compile_options
 }
 
-local M = {
+M.opts = {
     default_mappings = true,
     engines = userVars.engines or {'pdflatex','xelatex','lualatex'},
     viewer = userVars.viewer or 'xdg-open',
