@@ -25,14 +25,14 @@ end
 
 -- TODO: Should be able to set this on the CompileLatex command
 utils.getCompileOptions = function ()
-    if not userOpts.compile_options then
+    if not userOptions.compile_options then
         return ''
     end
 	return table.concat({userOptions.compile_options,utils.getSynctexOption()},' ')
 end
 
 utils.getSynctexOption = function ()
-	if (userOpts.synctex) then
+	if (userOptions.synctex) then
 		local synctexLevel = string.format('%d' , userOptions.synctex )
 		return '--synctex='.. synctexLevel ..' '
 	end
