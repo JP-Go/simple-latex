@@ -12,7 +12,7 @@ local compileCommand = {'-nargs=1 -bar -complete=customlist,GetEngines',
 local viewPdfCommand ={'', 
 			'ViewPdf',
 			string.format('lua require(\'simple-latex.functions\').openPdf(\'%s\')',
-			vim.g.simple_latex_viewer) }
+			require('simple-latex').options.viewer }
 
 local cseCommand = {'','ChangeSurroudingEnviroment','lua require(\'simple-latex.functions\').envOperations.change()'}
 local tseCommand = {'','ToggleStarEnviroment','lua require(\'simple-latex.functions\').envOperations.star()'}
