@@ -1,7 +1,7 @@
 local utils = {}
 local fn = vim.fn
 local command = vim.cmd
-local userOptions = require('simple-latex.options')
+local userOptions = require('simple-latex').options
 
 -- Compilation and file handling
 utils.checkExecutable = function(exe)
