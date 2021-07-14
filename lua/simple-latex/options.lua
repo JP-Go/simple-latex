@@ -13,7 +13,7 @@ local M = {
     engines = userVars.engines or {'pdflatex','xelatex','lualatex'},
     viewer = userVars.viewer or 'xdg-open',
     synctex = userVars.synctex or false,
-    compile_options = userVars.compile_options or 0,
+    compile_options = userVars.compile_options or false,
 }
 M.mergeOptions = function(new)
     if new then
