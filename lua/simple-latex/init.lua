@@ -6,7 +6,7 @@ M.setup = function(options)
     if (options) then
         opts.mergeOptions(options)
     end
-    if opts.default_mappings then
+    if opts.opts.default_mappings then
         require('simple-latex.keymaps')
     end
     require('simple-latex.commands')
