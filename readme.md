@@ -52,7 +52,7 @@ require('simple-latex')
 * LaTeX compilation with yout prefered LaTeX engine: Compiling your LaTeX file
 is easy.Just lauch this command: `:CompileLatex {your prefered engine here}`.
 
-* Pdf preview with yout prefered pdf viewer
+* Pdf preview with your prefered pdf viewer
 
 * Enviroment editing: Change, toggle to star enviroment, and even delete the
 enviroments faster.
