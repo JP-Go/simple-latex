@@ -90,7 +90,7 @@ __g:simple_latex_synctex__: Enables SyncTex file creation and sets the SyncTex
 option for the compiler. Should be a number following the SyncTex manual. If not 
 set or set to 0,the compiler will not generate the syncronization file .
 
-OBS.: For now, we don't support forward an backward searches with SyncTex in 
+__OBS.__: For now, we don't support forward an backward searches with SyncTex in 
 all viewers out of the box, only in Evince (Linux).
 
 ## Commands-and-keymaps
