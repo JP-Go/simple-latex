@@ -1,6 +1,7 @@
 local utils = {}
 local fn = vim.fn
 local command = vim.cmd
+local userOpts = require('simple-latex.options')
 
 -- Compilation and file handling
 utils.checkExecutable = function(exe)
@@ -24,16 +25,15 @@ end
 
 -- TODO: Should be able to set this on the CompileLatex command
 utils.getCompileOptions = function ()
-	local options = ''
-	if ( vim.g.simple_latex_compile_options ~= nil ) then
-		options = options .. table.concat(vim.g.simple_latex_compile_options,' ')
-	end
-	return table.concat({options,utils.getSynctexOption()},' ')
+    if not userOpts.compile_options then
+        return ''
+    end
+	return table.concat({userOptions.compile_options,utils.getSynctexOption()},' ')
 end
 
 utils.getSynctexOption = function ()
-	if ( vim.g.simple_latex_synctex ~= nil ) then
-		local synctexLevel = string.format('%d' , vim.g.simple_latex_synctex )
+	if (userOpts.synctex) then
+		local synctexLevel = string.format('%d' , userOptions.synctex )
 		return '--synctex='.. synctexLevel ..' '
 	end
 	return ''
