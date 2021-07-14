@@ -28,7 +28,8 @@ utils.getCompileOptions = function ()
     if not userOptions.compile_options then
         return ''
     end
-	return table.concat({userOptions.compile_options,utils.getSynctexOption()},' ')
+    local compile_options = table.concat(userOptions.compile_options)
+	return table.concat({compile_options,utils.getSynctexOption()},' ')
 end
 
 utils.getSynctexOption = function ()
