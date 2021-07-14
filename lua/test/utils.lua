@@ -43,11 +43,15 @@ utils.testEnvOperation = function (operation,expectedValue)
 end
 
 utils.logResultIfFailed = function (operation,expectedValue,valueGot)
-	local logIfFailed =
-		table.concat({"ERROR in ", operation, "\nExpected:\n",
-									table.concat(expectedValue,"\n"),"\nGot\n",
-									table.concat(valueGot,"\n") }, " ")
-	return logIfFailed
+    local logIfFailed =  ''
+    if type(expectedValue) == 'table' then
+        logIfFailed = table.concat({"ERROR in ", operation, "\nExpected:\n",
+                                table.concat(expectedValue,"\n"),"\nGot\n",
+                                table.concat(valueGot,"\n") }, " ")
+        return logIfFailed
+    end
+    return string.format('ERROR in %s\nExpected: %s\nGot: %s\n',operation,expectedValue,valueGot)
+
 end
 
 utils.assertOperation = function (operation,expectedValue)

@@ -72,7 +72,8 @@ utils.subInLine = function (linenum,patToFind,patToReplace)
 end
 
 utils.deleteLine = function (linenum)
-	fn.cursor(linenum,1)
+    fn.cursor(linenum,1)
 command('.delete')
 end
+
 return utils
