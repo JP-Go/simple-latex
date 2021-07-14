@@ -17,11 +17,11 @@ M = {
 
 M.mergeOptions = function(new)
     if new then
-        M.default_mappings = M.default_mappings and (new.default_mappings or userVars.default_mappings) 
-        M.engines = new.engines or M.engines
-        M.viewer = new.viewer or M.viewer
-        M.synctex = new.synctex or M.synctex
-        M.compile_options = new.compile_options or M.compile_options
+        for k,v in pairs(new) do
+            if(v) then
+                M[k] = v
+            end
+        end
     end
 end
 
