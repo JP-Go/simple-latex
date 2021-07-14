@@ -32,7 +32,7 @@ utils.getCompileOptions = function ()
 end
 
 utils.getSynctexOption = function ()
-	if (userOptions.synctex ~= 0) and (userOptions.synctex ~= nil) then
+	if (userOptions.synctex ~= 0) and (userOptions.synctex) then
 		local synctexLevel = string.format('%d' , userOptions.synctex )
 		return '--synctex='.. synctexLevel ..' '
 	end
