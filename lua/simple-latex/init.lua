@@ -1,5 +1,5 @@
 local M = {}
-local opts= require('options')
+local opts= require('simple-latex.options')
 
 M.setup = function(options)
     local options = options or false
