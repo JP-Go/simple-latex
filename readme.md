@@ -38,13 +38,13 @@ use 'JP-Go/simple-latex'
 * For init.vim:
 
 ```vim
-lua require('simple-latex')
+lua require('simple-latex').setup()
 ```
 
 * For init.lua
 
 ```lua
-require('simple-latex')
+require('simple-latex').setup()
 ```
 
 ## Features
@@ -84,7 +84,8 @@ __g:simple_latex_compile_options__: Allow to set compile options to the LaTeX
 compiler. Should be set as an vimscript array of strings 
 (eg.`['-halt-on-error','-draftmode']`) or a lua table, if prefered 
 (eg. `{'-halt-on-error','-draftmode'}`) as is set in your prefered LaTeX engine.
-(In Lualatex this options are preceded by two dashes instead of one).
+(In Lualatex this options are preceded by two dashes instead of one). Defaults to
+an empty lua table (`{''}`).
 
 __g:simple_latex_synctex__: Enables SyncTex file creation and sets the SyncTex 
 option for the compiler. Should be a number following the SyncTex manual. If not 
@@ -92,6 +93,20 @@ set or set to 0,the compiler will not generate the syncronization file .
 
 __OBS.__: For now, we don't support forward an backward searches with SyncTex in 
 all viewers out of the box, only in Evince (Linux).
+
+Simple-latex also has a way to be configured using lua. The parameters are passed as
+a lua table with the option and value. Here's a exmaple with the default options
+
+```lua
+require('simple-latex').setup({
+        -- format: option = value
+        viewer = 'xdg-open' -- [string] pdfviewer executable name. 
+        engines = {'pdflatex'} -- [table w/strings] list of the engines binaries.
+        default_mappings = true -- [boolean] enables default mappings (see: Commands-and-keymaps)
+        synctex =  0 -- [number] enables compilation with synctex.
+        compile_options = {''} -- [table w/strings] other compile options to be passed as flags 
+    })
+```
 
 ## Commands-and-keymaps
 
@@ -110,9 +125,12 @@ nnoremap <space>cse <cmd> ChangeSurroudingEnviroment<cr>
 nnoremap <space>dse <cmd> DeleteEnviroment<cr>
 nnoremap <space>tse <cmd> ToggleStarEnviroment<cr>
 ```
-These keymaps can be set manually, if the user prefers by setting the 
-        `simple_latex_default_mappings` to false, explicitly.
+These keymaps can be set manually, if the user prefers by setting 
+the `simple_latex_default_mappings` to false, explicitly.
+
 ###Commands
+
+Here are the commands provided to the user as normal vim commands
 
 `CompileLatex compiler`: Compile the current LaTeX file with `compiler`
 
