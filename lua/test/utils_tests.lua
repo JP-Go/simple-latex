@@ -1,15 +1,14 @@
 package.path = '../simple-latex/?.lua;' .. package.path
-local testingUtils = require('utils')
+-- local testingUtils = require('utils')
 local utils =  require('simple-latex.utils')
 local M = {}
 
-M.checkLatexExecutableTest = function()
+M.checkExecutableTest = function()
     local exec = 'grep'
     assert(utils.checkExecutable(exec) == true, 'Error in utils.checkExecutable()')
 end
 
 M.checkLatexOutputDirectoryTest = function()
-    local cwd = vim.fn.getcwd(0,0)
     local errMsg = 'ERROR in utils.getLatexOutputDirectory()'
     assert(utils.getLatexOutputDirectory() == '',errMsg)
     vim.cmd('chdir '..vim.fn.expand('~'))
@@ -17,5 +16,6 @@ M.checkLatexOutputDirectoryTest = function()
     vim.cmd('chdir '.. vim.fn.expand("%:p:h"))
 end
 
-M.checkLatexExecutableTest()
-M.checkLatexOutputDirectoryTest()
+
+
+return M
