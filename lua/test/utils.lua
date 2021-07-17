@@ -1,6 +1,5 @@
 local utils = {}
 local api = vim.api
--- local fn = vim.fn
 
 -- Helper Functions
 local createbuf = function ()
@@ -15,8 +14,8 @@ local getlines = function (bufhandle)
 end
 
 local compareTablesFields = function (t1,t2)
-	for lnum, line in ipairs(t1) do
-		if t2[lnum] ~= line then
+	for key, value in ipairs(t1) do
+		if t2[key] ~= value then
 			return false
 		end
 	end
@@ -33,43 +32,53 @@ end
 
 -- returns a boolean to tell if the operation was successful and
 -- the test buffer text
-utils.testEnvOperation = function (operation,expectedValue)
+utils.testEnvOperation = function (operation)
     -- TODO: operation should be a function reference
 	local testbuf = utils.createTestBuf()
 	api.nvim_set_current_buf(testbuf)
-	require('simple-latex.functions').envOperations[operation]()
+    operation()
 	local bufText = getlines(testbuf)
 	api.nvim_buf_delete(testbuf,{force = true})
-	return compareTablesFields(bufText,expectedValue),bufText
+	return bufText
 end
 
-utils.logResultOfEnvOperationsIfFailed = function (operation,expectedValue,valueGot)
-    local logIfFailed =  ''
-    logIfFailed = table.concat({"ERROR in Environment Operation [", operation, "]\nExpected:\n",
-                            table.concat(expectedValue,"\n"),"\nGot\n",
-                            table.concat(valueGot,"\n") }, " ")
-    return logIfFailed
+
+utils.formatTableForLog = function (tbl)
+    local formattedTable = table.concat(tbl,'\n')
+    return formattedTable
 end
 
-utils.logIfFailed =  function (expectedValue,valueGot)
-    return true
-end
-
-utils.logIfSuccess = function ()
-    -- code
-end
-
-utils.assertOperation = function (operation,expectedValue)
-	local testPassed,resultOfOperation = utils.testEnvOperation(operation,expectedValue)
-	local logIfFailed = utils.logResultOfEnvOperationsIfFailed(operation,expectedValue,resultOfOperation)
-	assert(testPassed,logIfFailed)
-end
-
-utils.assertValue = function (operation,expectedValue)
-    local testSubjectResult = operation()
-    if testSubjectResult ~= expectedValue then
-        return true
+utils.logTest = function(operation,expectedValue,valueGot)
+    local result =  utils.compareValue(expectedValue,valueGot)
+    if result == false then
+        utils.logIfFailed(operation,expectedValue,valueGot)
+        return
     end
+    utils.logIfSuccess(operation)
+
+end
+utils.logIfFailed =  function (operation,expectedValue,valueGot)
+    if type(expectedValue) == "table" then
+        print('[ERROR] in ' .. operation ..'\nExpects: ' ..
+            utils.formatTableForLog(expectedValue) .. '\nGot: ' ..
+            utils.formatTableForLog(valueGot))
+        return
+    end
+    print( ('[ERROR] in %s\nExpects: %s\nGot:%s\n'):format(operation,expectedValue,valueGot) )
+end
+
+utils.logIfSuccess = function (operation)
+    print( ('[PASSED] in %s'):format(operation))
+end
+
+utils.compareValue = function (value,expectedValue)
+    if type(value) == 'table' then
+        return compareTablesFields(value,expectedValue)
+    end
+    if value ~= expectedValue then
+        return false
+    end
+    return true
 end
 
 return utils
