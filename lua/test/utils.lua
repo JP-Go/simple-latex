@@ -1,6 +1,6 @@
 local utils = {}
 local api = vim.api
-local fn = vim.fn
+-- local fn = vim.fn
 
 -- Helper Functions
 local createbuf = function ()
@@ -15,7 +15,6 @@ local getlines = function (bufhandle)
 end
 
 local compareTablesFields = function (t1,t2)
-	local isSame = true
 	for lnum, line in ipairs(t1) do
 		if t2[lnum] ~= line then
 			return false
@@ -32,32 +31,45 @@ utils.createTestBuf = function ()
 	return buf
 end
 
+-- returns a boolean to tell if the operation was successful and
+-- the test buffer text
 utils.testEnvOperation = function (operation,expectedValue)
-	-- TODO operation has to be a string for now, replace with function ref
+    -- TODO: operation should be a function reference
 	local testbuf = utils.createTestBuf()
 	api.nvim_set_current_buf(testbuf)
-	vim.cmd("lua " .. operation)
+	require('simple-latex.functions').envOperations[operation]()
 	local bufText = getlines(testbuf)
 	api.nvim_buf_delete(testbuf,{force = true})
 	return compareTablesFields(bufText,expectedValue),bufText
 end
 
-utils.logResultIfFailed = function (operation,expectedValue,valueGot)
+utils.logResultOfEnvOperationsIfFailed = function (operation,expectedValue,valueGot)
     local logIfFailed =  ''
-    if type(expectedValue) == 'table' then
-        logIfFailed = table.concat({"ERROR in ", operation, "\nExpected:\n",
-                                table.concat(expectedValue,"\n"),"\nGot\n",
-                                table.concat(valueGot,"\n") }, " ")
-        return logIfFailed
-    end
-    return string.format('ERROR in %s\nExpected: %s\nGot: %s\n',operation,expectedValue,valueGot)
+    logIfFailed = table.concat({"ERROR in Environment Operation [", operation, "]\nExpected:\n",
+                            table.concat(expectedValue,"\n"),"\nGot\n",
+                            table.concat(valueGot,"\n") }, " ")
+    return logIfFailed
+end
 
+utils.logIfFailed =  function (expectedValue,valueGot)
+    return true
+end
+
+utils.logIfSuccess = function ()
+    -- code
 end
 
 utils.assertOperation = function (operation,expectedValue)
 	local testPassed,resultOfOperation = utils.testEnvOperation(operation,expectedValue)
-	local logIfFailed = utils.logResultIfFailed(operation,expectedValue,resultOfOperation)
+	local logIfFailed = utils.logResultOfEnvOperationsIfFailed(operation,expectedValue,resultOfOperation)
 	assert(testPassed,logIfFailed)
+end
+
+utils.assertValue = function (operation,expectedValue)
+    local testSubjectResult = operation()
+    if testSubjectResult ~= expectedValue then
+        return true
+    end
 end
 
 return utils

@@ -1,4 +1,4 @@
-local envOpsTests = require('env_op_test')
+local envOpsTests = require('env_ops_tests')
 
 envOpsTests.testChangeEnv()
 envOpsTests.testDeleteEnv()
