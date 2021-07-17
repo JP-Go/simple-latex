@@ -1,4 +1,5 @@
 local utils = require('simple-latex.utils')
+local options = require('simple-latex.options')
 local command = vim.cmd
 local fn = vim.fn
 local functions = {}
@@ -7,7 +8,7 @@ functions.compileLatex = function (engine)
 	if utils.checkExecutable(engine) then
 		local filepath = utils.getLatexFilePath()
 		local outDir = utils.getLatexOutputDirectory()
-		local compileOptions = utils.getCompileOptions()
+		local compileOptions = utils.getCompileOptions(options)
 		local commandToCall = table.concat({'!',engine,outDir,compileOptions,filepath},' ')
 		command(commandToCall)
 		return
