@@ -61,14 +61,14 @@ utils.logIfFailed =  function (operation,expectedValue,valueGot)
     if type(expectedValue) == "table" then
         print('[ERROR] in ' .. operation ..'\nExpects: ' ..
             utils.formatTableForLog(expectedValue) .. '\nGot: ' ..
-            utils.formatTableForLog(valueGot))
+            utils.formatTableForLog(valueGot),'red')
         return
     end
-    print( ('[ERROR] in %s\nExpects: %s\nGot:%s\n'):format(operation,expectedValue,valueGot) )
+    print( ('[ERROR] in %s\nExpects: %s\nGot:%s\n'):format(operation,expectedValue,valueGot),'red' )
 end
 
 utils.logIfSuccess = function (operation)
-    print( ('[PASSED] in %s'):format(operation))
+    print('[PASSED] in ' .. operation )
 end
 
 utils.compareValue = function (value,expectedValue)
