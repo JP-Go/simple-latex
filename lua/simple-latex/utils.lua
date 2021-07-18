@@ -11,9 +11,11 @@ utils.checkExecutable = function(exe)
 end
 
 utils.getLatexOutputDirectory = function()
-	local cwd = fn.getcwd(0,0)
+	local cwd = fn.getcwd()
 	local filedir = fn.expand("%:p:h")
-	if cwd == filedir then return '' end
+	if cwd == filedir then
+        return ''
+    end
 	return '--output-dir=' .. filedir
 end
 
@@ -25,17 +27,18 @@ end
 
 -- TODO: Should be able to set this on the CompileLatex command
 utils.getCompileOptions = function (options)
+    options = options or false
     if not options.compile_options then
         return ''
     end
-    local compile_options = table.concat(options.compile_options)
-	return table.concat({compile_options,utils.getSynctexOption()},' ')
+    local compileOptions = table.concat(options.compile_options,' ')
+	return table.concat({compileOptions,utils.getSynctexOption(options)},' ')
 end
 
 utils.getSynctexOption = function (options)
 	if (options.synctex ~= 0) and (options.synctex) then
 		local synctexLevel = string.format('%d' , options.synctex )
-		return '--synctex='.. synctexLevel ..' '
+		return '--synctex='.. synctexLevel
 	end
 	return ''
 end
@@ -57,6 +60,7 @@ utils.getEnvName = function (linenum)
 	local capture = fn.matchlist(lineContent,'begin{\\(\\w*\\*\\?\\)}')
 	return capture[2]
 end
+
 utils.findEnvDelimiters =  function()
 	local beginPat = "begin{\\w*\\*\\?}"
 	local beginPos = fn.search(beginPat,'bc')
