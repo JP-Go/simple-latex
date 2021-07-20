@@ -1,7 +1,7 @@
 # Simple-latex
 
 A set of usefull functions to write LaTeX documents for NeoVim, writen in lua.
-(requires Nvim >0.5)
+(requires Nvim > 0.5)
 
 ## A brief apology
 
