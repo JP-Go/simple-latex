@@ -13,7 +13,6 @@ local mockOptionsFilled = {
 }
 
 TEST_COUNTER = 1
-
 for key,_ in pairs(envOpsTests) do
     print(('TEST %d: '):format(TEST_COUNTER))
     envOpsTests[key]()
