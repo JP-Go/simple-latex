@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-nvim --headless +"%luafile tests.lua" +"echo ''" +"qa!"
+nvim --cmd "set rtp+=../" --headless +"packadd simple-latex" +"%luafile tests.lua" +"echo ''" +"qa!"

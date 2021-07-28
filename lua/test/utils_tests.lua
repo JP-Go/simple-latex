@@ -1,5 +1,5 @@
 local testUtils = require('utils')
-local utils = dofile('/home/jp/code/simple-latex/lua/simple-latex/utils.lua')
+local utils = require('simple-latex.utils')
 -- local utils =  require('simple-latex.utils')
 local expand  = vim.fn.expand
 local cmd = vim.cmd
