@@ -143,8 +143,7 @@ current cursor position
 
 `DeleteEnviroment`: Delete the enviroment delimiters that surround the current cursor position 
 
-`ToggleStarEnviroment`: Turns the the enviroment that surrounds the cursor into a star (*) enviroment.
-Usefull for AMS packages
+`ToggleStarEnviroment`: Turns the the enviroment that surrounds the cursor into a star (\*) enviroment. Usefull for AMS packages
 
 ## Feedback and contributing
 
@@ -159,6 +158,8 @@ possible.
 ## TODO
 
 - [] Allow SyncTex forward and backward searches for more editors
+
+- [] Latexmk integration
 
 - [] New feature: simple bibtex integration
 
